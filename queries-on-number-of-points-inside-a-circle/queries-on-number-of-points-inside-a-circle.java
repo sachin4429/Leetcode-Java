@@ -1,20 +1,20 @@
 class Solution {
-    double equation(int arr[], int brr[])
-    {
-        return Math.pow((brr[0]-arr[0]),2) + Math.pow((brr[1]-arr[1]),2) - Math.pow(arr[2],2);
-    }
     public int[] countPoints(int[][] points, int[][] queries) {
-        int res[] = new int[queries.length];
-        for(int i = 0; i<queries.length; i++)
-        {
-            int count = 0;
-            for(int j = 0; j<points.length; j++)
-            {
-                if(equation(queries[i],points[j]) <= 0)
-                    count++;
+         int[] res = new int[queries.length];
+        for (int i = queries.length - 1; i >= 0; i--) {
+            int[] query = queries[i];
+
+            int r2 = query[2];
+            r2 *= r2;
+            int cnt = 0;
+            for (int[] point : points) {
+                int dx = query[0] - point[0];
+                int dy = query[1] - point[1];
+                cnt += 1 - ((r2 - dy * dy - dx * dx) >>> 31);
             }
-            res[i] = count;
+            res[i] = cnt;
         }
+
         return res;
     }
 }
