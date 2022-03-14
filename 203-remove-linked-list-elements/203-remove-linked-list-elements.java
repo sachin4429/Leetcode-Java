@@ -10,32 +10,20 @@
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode temp = head;
-        ListNode prev = null;;
-		while(temp != null && temp.val == val)
-		{
-            head = temp.next;
-            temp = head;
+               if (head == null) {
+            return head;
         }
-        while(temp != null)
-		{
-           while (temp != null && temp.val != val)
-            {
-                prev = temp;
-                temp = temp.next;
+        ListNode dummy = head;
+        while (dummy.next != null) {
+            if (dummy.next.val == val) {
+                dummy.next = dummy.next.next;
+            }else {
+               dummy = dummy.next;
             }
- 
-            // If key was not present in linked list
-            if (temp == null)
-                return head;
- 
-            // Unlink the node from linked list
-            prev.next = temp.next;
- 
-            // Update Temp for next iteration of outer loop
-            temp = prev.next;
-		}
-		return head;
-        
+        }
+        if (head.val == val) {
+            return head.next;
+        }
+        return head;
     }
 }
