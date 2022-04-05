@@ -1,30 +1,54 @@
 class Solution {
+     int findKRotation(int nums[], int n) {
+        // code here
+        int lo =0, hi =n-1;
+        while(hi>=lo)
+        {
+            if(nums[lo]<nums[hi]) return lo;
+            int mid = lo + (hi-lo)/2;
+            int next = (mid+1)%n;
+            int prev = (mid-1+n)%n;
+            if(nums[mid] <= nums[next] && nums[mid] <= nums[prev])
+                return mid;
+            if(nums[mid] >= nums[lo])
+                lo = mid+1;
+            else
+                hi = mid-1;
+                
+        }
+        return -1;
+    }
+     public int bs(int[] nums, int target, int s, int e) {
+        int lo =s, hi =e-1;
+        while(hi>=lo)
+        {
+            int mid = lo + (hi-lo)/2;
+            if(nums[mid] > target)
+                hi = mid-1;
+            else if(nums[mid] < target)
+                lo = mid+1;
+            else
+                return mid;
+        }
+        return -1;
+    }
     public int search(int[] nums, int target) {
         
-        int n = nums.length;
-        int low = 0, high = n-1;
-        while(low<=high){
-            int mid = (low+high)/2;
-            // check if the current element is target
-            if(nums[mid] == target)
-                return mid;
-            // if the starting index of the search space has smaller element than current element
-            else if(nums[low]<=nums[mid]){
-                // if target lies in non-rotated search space (or subarray)
-                if(target >= nums[low] && target < nums[mid])
-                    high = mid - 1;
-                else
-                    low = mid + 1;
-            } else {
-                // if target lies in non-rotated subarray
-                if(target>nums[mid] && target<=nums[high])
-                    low = mid + 1;
-                else
-                    high = mid - 1;
-            }
+        int ind = findKRotation(nums, nums.length);
+            
+        if(ind == 0)
+            return bs(nums, target, 0, nums.length);
+        else
+        {
+            int ind1 = bs(nums, target, 0, ind);
+            int ind2 = bs(nums, target, ind, nums.length);
+            if(ind1 == -1 && ind2 ==-1)
+                return -1;
+            else if(ind1 != -1)
+                return ind1;
+            else
+                return ind2;
         }
-        // if you couldn't find the target element until now then it does not exists
-        return -1;
         
     }
 }
