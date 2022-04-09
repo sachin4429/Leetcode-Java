@@ -20,10 +20,6 @@ class Solution {
                 }
             }
         }
-        int res =  t[n][n];
-        if(res == n)
-            return 0;
-        else 
-            return n - res;
+        return n - t[n][n];
     }
 }
