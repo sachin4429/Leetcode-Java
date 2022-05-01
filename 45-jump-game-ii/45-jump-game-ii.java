@@ -4,8 +4,10 @@ class Solution {
         var farthest = 0;
         var jumps = 0;
         for(var i = 0; i<nums.length-1; i++)
-        {
+        { 
             farthest = Math.max(farthest, nums[i]+i);
+            if(i==0 && current==farthest)
+				return -1;
             if(i == current)
             {
                 current = farthest;
