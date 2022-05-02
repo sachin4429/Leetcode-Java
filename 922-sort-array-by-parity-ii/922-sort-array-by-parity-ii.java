@@ -1,26 +1,15 @@
 class Solution {
     public int[] sortArrayByParityII(int[] nums) {
-        ArrayList<Integer> err = new ArrayList<Integer>();
-        ArrayList<Integer> orr = new ArrayList<Integer>();
-        for(int i = 0; i<nums.length; i++)
-        {
-            if(nums[i]%2==0)
-                err.add(nums[i]);
-            else
-                orr.add(nums[i]);
-        }
-        int e = 0, o = orr.size()-1;
-        for(int i = 0; i<nums.length; i++)
-        {
-            if(i%2 == 0)
-            {
-                nums[i] = err.get(e);
-                e++;
-            }
-            else
-            {
-                nums[i] = orr.get(o);
-                o--;
+             int j = 1;
+        int n = nums.length;
+        for (int i = 0; i < n; i += 2) {
+            if((nums[i] % 2) == 1) {
+                while (j < n && (nums[j] % 2) == 1) {
+                    j += 2;
+                }
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
             }
         }
         return nums;
