@@ -1,23 +1,24 @@
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
-        int arr[] = new int [nums.length];
-        for(int i=0; i<nums.length; i++)
+        int end = -1;
+        int max = nums[0];
+        for(int i = 1; i<nums.length; i++)
         {
-            arr[i] = nums[i];
-        }
-        Arrays.sort(arr);
-        int low = 0, high = nums.length-1;
-        while(low<high)
-        {
-            if(arr[low] == nums[low])
-                low++;
-            else if(arr[high] == nums[high])
-                high--;
+            if(max>nums[i])
+                end = i;
             else
-                break;
+                max = nums[i];
         }
-        if(high == low)
-            return 0;
-        return high-low+1;
+        int st = 0;
+        int min = nums[nums.length-1];
+        for(int i = nums.length-2; i>=0; i--)
+        {
+            if(min<nums[i])
+                st = i;
+            else
+                min = nums[i];
+        }
+        System.out.println(st+" "+end);
+        return end-st+1;
     }
 }
