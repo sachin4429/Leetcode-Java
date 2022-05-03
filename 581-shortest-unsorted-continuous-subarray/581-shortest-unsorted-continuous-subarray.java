@@ -18,7 +18,7 @@ class Solution {
             else
                 min = nums[i];
         }
-        System.out.println(st+" "+end);
+        //System.out.println(st+" "+end);
         return end-st+1;
     }
 }
