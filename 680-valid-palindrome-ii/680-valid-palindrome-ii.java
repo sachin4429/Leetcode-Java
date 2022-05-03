@@ -1,13 +1,13 @@
 class Solution {
-    public boolean validPalindrome(String s) {
-        int lo = 0,  hi = s.length()-1;
+    public boolean validPalindrome(String str) {
+        int lo = 0,  hi = str.length()-1;
+        StringBuilder s = new StringBuilder(str);
         int flag = 0;
         int slag = 0;
         while(hi>=lo)
         {
             if(s.charAt(lo) != s.charAt(hi))
             {
-                System.out.println(hi +" "+ lo);
                 flag++;
                 if(s.charAt(lo+1) == s.charAt(hi))
                 {
