@@ -22,12 +22,12 @@ class Solution {
         s.push(root);
         while(!s.isEmpty())
         {
-            TreeNode temp = s.pop();
-            ans.add(temp.val);
-            if(temp.right != null)
-                s.push(temp.right);
-            if(temp.left != null)
-                s.push(temp.left);
+            root = s.pop();
+            ans.add(root.val);
+            if(root.right != null)
+                s.push(root.right);
+            if(root.left != null)
+                s.push(root.left);
         }
         return ans;
     }
