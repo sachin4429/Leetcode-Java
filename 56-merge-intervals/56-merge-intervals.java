@@ -13,12 +13,14 @@ class Solution {
             }
             else
             {
-                res.add(new int[]{start, end});
+                int arr[] = new int[]{start, end};
+                res.add(arr);
                 start = i[0];
                 end = i[1];
             }
         }
-        res.add(new int[]{start, end});
+        int arr[] = new int[]{start, end};
+        res.add(arr);
         return res.toArray(new int[0][]);
     }
 }
