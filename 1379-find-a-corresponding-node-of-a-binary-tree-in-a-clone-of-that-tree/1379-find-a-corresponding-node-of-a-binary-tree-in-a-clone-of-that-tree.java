@@ -14,7 +14,10 @@ class Solution {
         if(root == null)
             return;
         if(root.val == k)
+        {
             res = root;
+            return;
+        }
         inorder(root.right,k);
         inorder(root.left,k);
     }
