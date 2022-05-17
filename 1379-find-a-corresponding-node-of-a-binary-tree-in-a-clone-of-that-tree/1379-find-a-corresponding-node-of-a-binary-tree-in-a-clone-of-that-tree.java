@@ -9,21 +9,15 @@
  */
 
 class Solution {
-    public static void inorder(TreeNode root, int k)
-    {
-        if(root == null)
-            return;
-        if(root.val == k)
-        {
-            res = root;
-            return;
-        }
-        inorder(root.right,k);
-        inorder(root.left,k);
-    }
-    static TreeNode res = null;
-    public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        inorder(cloned,target.val);
-        return res;
-    }
+    public TreeNode getTargetCopy(TreeNode original, TreeNode cloned, TreeNode target) {
+        if(target == original)
+            return cloned;
+        if(original == null)
+            return null;
+        TreeNode node = getTargetCopy(original.left, cloned.left, target);
+        if(node!=null)
+            return node;
+        node = getTargetCopy(original.right, cloned.right, target);
+        return node;
+    }   
 }
