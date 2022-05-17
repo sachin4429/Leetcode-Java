@@ -1,3 +1,26 @@
+class Solution {
+    
+    int sum = 0;
+    
+    public int sumEvenGrandparent(TreeNode root) {
+        helper(root, null, null);
+        return sum;
+    }
+    
+    private void helper(TreeNode node, TreeNode p, TreeNode gp) {
+        
+        if(node == null)
+            return;
+        
+        if(gp != null && gp.val % 2 == 0)
+            sum+= node.val;
+        
+        helper(node.left, node, p);
+        helper(node.right, node, p);
+    }
+    
+}
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -12,7 +35,7 @@
  *         this.right = right;
  *     }
  * }
- */
+ 
 class Solution {
     int sum = 0;
     public void traversal(TreeNode root)
@@ -45,3 +68,4 @@ class Solution {
         return sum;
     }
 }
+*/
