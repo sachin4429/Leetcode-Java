@@ -19,13 +19,13 @@ class Solution {
         s = head;
         if(f == null)
             return head.next;
-        while(f != null)
+        while(f.next != null)
         {
             f = f.next;
-            p = s;
+            //p = s;
             s = s.next; 
         }
-        p.next = s.next;
+        s.next = s.next.next;
         return head;
     }
 }
