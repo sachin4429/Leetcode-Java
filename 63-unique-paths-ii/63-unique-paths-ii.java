@@ -2,8 +2,6 @@ class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length;
         int n = obstacleGrid[0].length;
-        if(m == 1 && n==1 && obstacleGrid[m-1][n-1] == 0)
-            return 1;
         if(obstacleGrid[m-1][n-1] == 1)
             return 0;
         int dp[][] = new int[m+1][n+1];
