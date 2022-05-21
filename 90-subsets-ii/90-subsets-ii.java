@@ -11,7 +11,6 @@ class Solution {
             {
                 curr = new ArrayList<Integer>(ans.get(j));
                 curr.add(i);
-                //Collections.sort(curr);
                 if(!ans.contains(curr))
                     ans.add(curr);
             }
