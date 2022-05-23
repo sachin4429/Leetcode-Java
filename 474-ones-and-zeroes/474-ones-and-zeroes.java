@@ -1,22 +1,26 @@
 class Solution {
-	int[][] dp;
-
-	public int findMaxForm(String[] strs, int m, int n) {
-		dp = new int[m + 1][n + 1];
-		int consider = 0;
-		int skip = 0;
-		for (String s : strs) {
-			int[] count = count01(s.toCharArray());
-			for (int zero = m; zero >= count[0]; zero--) {
-				for (int one = n; one >= count[1]; one--) {
-					consider = 1 + dp[zero - count[0]][one - count[1]];
-					skip = dp[zero][one];
-					dp[zero][one] = Math.max(consider, skip);
-				}
-			}
-		}
-		return dp[m][n];
-	}
+    int[][][] dp;
+    public int findMaxForm(String[] strs, int m, int n) 
+    {
+        dp = new int[m + 1][n + 1][strs.length];
+        return helper(strs,m,n,0);   
+    }
+    public int helper(String[] strs, int m, int n, int index)
+    {
+        if(index == strs.length || m+n == 0)
+            return 0;
+        if(dp[m][n][index] > 0)
+            return dp[m][n][index];
+        int[] count = count01(strs[index].toCharArray());
+        if(m>=count[0] && n>=count[1])
+        {
+            return dp[m][n][index] = Math.max(1+helper(strs,m-count[0],n-count[1],index+1),helper(strs,m,n,index+1));
+        }
+        else
+        {
+            return dp[m][n][index] = helper(strs,m,n,index+1);
+        }
+    }
     public int[] count01(char[] c)
     {
         int count[] = new int[2];
