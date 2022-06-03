@@ -1,19 +1,17 @@
 class Solution {
-    public int[] fairCandySwap(int[] a, int[] b) {
+    public int[] fairCandySwap(int[] A, int[] B) {
         int sa = 0, sb = 0;
-        for(int i: a)
+        for(int i: A)
             sa += i;
-        for(int i: b)
+        for(int i: B)
             sb += i;
         int dif = (sa - sb) / 2;
-        int lo = 0, hi = b.length-1;
-        for (int i = 0; i < a.length; i++) 
+        HashSet<Integer> S = new HashSet<>();
+        for (int a : A) S.add(a);
+        for (int b : B) 
         {
-            for (int j = 0; j < b.length; j++) 
-            {
-                if (a[i] - b[j] == dif)
-                    return new int[]{a[i], b[j]};
-            }
+            if (S.contains(b + dif)) 
+                return new int[] {b + dif, b};
         }
         return null;
     }
