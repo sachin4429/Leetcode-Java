@@ -9,6 +9,11 @@ class Solution {
             if(nums[i] == 0)
             {
                 count ++;
+                if(count>1)
+                {
+                    pro0 = 0;
+                    break;
+                }
             }
             if(nums[i] != 0)
             {
