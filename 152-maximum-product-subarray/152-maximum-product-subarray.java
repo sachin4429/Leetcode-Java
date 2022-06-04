@@ -1,18 +1,22 @@
 class Solution {
-    public int maxProduct(int[] arr) 
-    {
-        int n = arr.length;
-        int max_ending_here = arr[0];
-        int min_ending_here = arr[0];
-        int max_so_far = arr[0];
-        for(int i=1;i<n;i++)
-        {
-          int temp = Math.max(Math.max(arr[i], arr[i] * max_ending_here), arr[i] * min_ending_here);
-          min_ending_here = Math.min(Math.min(arr[i], arr[i] * max_ending_here), arr[i] * min_ending_here);
-          max_ending_here = temp;
-          max_so_far = Math.max(max_so_far, max_ending_here);
+    public int maxProduct(int[] nums) {
+        int cp=1;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++){
+            cp=cp*nums[i];
+            max=Math.max(max,cp);
+            if(cp==0){
+                cp=1;
+            }
         }
- 
-        return max_so_far;
+        cp=1;
+        for(int i=nums.length-1;i>=0;i--){
+            cp=cp*nums[i];
+            max=Math.max(max,cp);
+            if(cp==0){
+                cp=1;
+            }
+        }
+        return max;
     }
 }
