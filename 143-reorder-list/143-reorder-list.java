@@ -24,14 +24,11 @@ class Solution {
     public void reorderList(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
-        ListNode prev = head;
         while(fast!=null && fast.next!=null)
         {
             fast = fast.next.next;
-            prev = slow;
             slow = slow.next;
         }
-        //prev.next = null;
         ListNode secondHead = rev(slow);
         ListNode newHead = new ListNode();
         ListNode temp = newHead;
