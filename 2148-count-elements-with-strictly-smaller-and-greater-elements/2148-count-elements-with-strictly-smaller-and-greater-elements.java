@@ -6,15 +6,15 @@ class Solution {
             min = Math.min(min, i);
             max = Math.max(max, i);
         }
-            if(min == max) return 0;
-        int minCount = 0, maxCount = 0;
+        if(min == max) return 0;
+        int Count = 0;
         for(int j : nums)
         {
-            if(min == j)
-                minCount++;
-            if(max == j)
-                maxCount++;
+            if(min == j || max == j)
+                continue;
+            else
+                Count++;
         }
-        return nums.length - minCount - maxCount;
+        return Count;
     }
 }
