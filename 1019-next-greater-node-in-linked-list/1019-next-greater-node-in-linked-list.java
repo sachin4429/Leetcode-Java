@@ -23,15 +23,9 @@ class Solution {
         {
             while(!s.isEmpty() && s.peek() <= arr.get(i))
                     s.pop();
-            if(s.isEmpty())
-            {
-                s.push(arr.get(i));
-            } 
-            else
-            {
+            if(!s.isEmpty())
                 res[i] = s.peek();
-                s.push(arr.get(i));
-            }
+            s.push(arr.get(i));
         }
         return res;
     }
