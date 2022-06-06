@@ -10,9 +10,7 @@ class Solution {
         int Count = 0;
         for(int j : nums)
         {
-            if(min == j || max == j)
-                continue;
-            else
+            if(min != j && max != j)
                 Count++;
         }
         return Count;
