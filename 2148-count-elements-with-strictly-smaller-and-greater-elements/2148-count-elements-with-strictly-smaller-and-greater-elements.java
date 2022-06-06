@@ -1,18 +1,20 @@
 class Solution {
     public int countElements(int[] nums) {
-        Arrays.sort(nums);
-        int lo = 0, hi = nums.length-1;
-        while(lo<hi)
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for(int i : nums)
         {
-            if(nums[lo] == nums[lo+1])
-                lo++;
-            else if(nums[hi] == nums[hi-1])
-                hi--;
-            else
-                break;
+            min = Math.min(min, i);
+            max = Math.max(max, i);
         }
-        if(lo == hi)
-            return 0;
-        return hi-lo-1;
+            if(min == max) return 0;
+        int minCount = 0, maxCount = 0;
+        for(int j : nums)
+        {
+            if(min == j)
+                minCount++;
+            if(max == j)
+                maxCount++;
+        }
+        return nums.length - minCount - maxCount;
     }
 }
