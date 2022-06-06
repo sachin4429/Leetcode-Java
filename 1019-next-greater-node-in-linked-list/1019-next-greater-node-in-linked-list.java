@@ -21,31 +21,18 @@ class Solution {
         Stack<Integer> s = new Stack<Integer>();
         for(int i = res.length-1; i>=0; i--)
         {
+            while(!s.isEmpty() && s.peek() <= arr.get(i))
+                    s.pop();
             if(s.isEmpty())
             {
                 s.push(arr.get(i));
-            }
-            else if(s.peek() <= arr.get(i))
-            {
-                while(!s.isEmpty() && s.peek() <= arr.get(i))
-                    s.pop();
-                if(s.isEmpty())
-                {
-                    s.push(arr.get(i));
-                } 
-                else
-                {
-                    res[i] = s.peek();
-                    s.push(arr.get(i));
-                }
-            }
+            } 
             else
             {
                 res[i] = s.peek();
                 s.push(arr.get(i));
             }
         }
-        
         return res;
     }
 }
