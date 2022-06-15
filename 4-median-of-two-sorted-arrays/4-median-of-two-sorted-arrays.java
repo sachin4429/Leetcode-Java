@@ -6,7 +6,7 @@ class Solution {
         
     int low=0,high=m,medianPos=((m+n)+1)/2;
     while(low<=high) {
-        int cut1 = (low+high)>>1;
+        int cut1 = low + (high-low)/2;
         int cut2 = medianPos - cut1;
         
         int l1 = (cut1 == 0)? Integer.MIN_VALUE:arr1[cut1-1];
