@@ -10,11 +10,7 @@ class MyQueue {
     }
     
     public int pop() {
-        if(op.isEmpty())
-        {
-            while(!in.isEmpty())
-                op.push(in.pop());
-        }
+        peek();
         return op.pop();
     }
     
