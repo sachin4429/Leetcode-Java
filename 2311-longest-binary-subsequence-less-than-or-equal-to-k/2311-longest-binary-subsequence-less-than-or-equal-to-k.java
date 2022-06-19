@@ -8,7 +8,7 @@ class Solution {
         {
             if(s.charAt(i) == '0')
                 ans++;
-            else if(stop == false && j<31)
+            else if(stop == false)
             {
                 sum += Math.pow(2,j);
                 if(sum>k)
