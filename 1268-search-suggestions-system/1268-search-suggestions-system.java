@@ -10,8 +10,10 @@ class Solution {
             List<String> innerres = new ArrayList<String>();
             for(int j = 0; j<products.length; j++)
             {
-                if(products[j].startsWith(keyWord) && count<3)
+                if(products[j].startsWith(keyWord))
                 {
+                    if(count == 3)
+                        break;
                     count++;
                     innerres.add(products[j]);
                 }
