@@ -1,8 +1,8 @@
 class Solution {
     public int[][] matrixReshape(int[][] mat, int r, int c) {
-        if(mat.length == r && mat[0].length == c)
-            return mat;
         if(mat.length*mat[0].length != r*c)
+            return mat;
+        if(mat.length == r && mat[0].length == c)
             return mat;
         int res[][] = new int[r][c];
         int a = 0, b = 0;
