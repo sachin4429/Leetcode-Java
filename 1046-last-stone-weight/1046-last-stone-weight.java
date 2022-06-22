@@ -3,16 +3,13 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a,b)-> b-a);
         for(int i : stones)
             pq.add(i);
-        while(pq.size()>=2)
+        while(pq.size()>1)
         {
             int a = pq.poll();
             int b = pq.poll();
-            if(Math.abs(a-b) > 0)
-                pq.add(Math.abs(a-b));
+            if(a-b > 0)
+                pq.add(a-b);
         }
-        if(pq.size() == 0)
-            return 0;
-        else
-            return pq.poll();
+        return pq.size() == 0 ? 0 : pq.poll();
     }
 }
