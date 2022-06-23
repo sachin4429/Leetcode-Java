@@ -1,18 +1,16 @@
 class Solution {
     public int maximumScore(int a, int b, int c) {
-        PriorityQueue<Integer> q = new PriorityQueue<Integer>((x,y)-> y-x);
-        q.add(a); q.add(b); q.add(c);
-        int count = 0, score = 0;
-        while(true)
-        {
-            int first = q.poll();
-            int second = q.poll();
-            if(second == 0)
-                break;
-            q.add(first-1);
-            q.add(second-1);
-            score++;
+        int x = Math.min(a, Math.min(b,c));
+        int z = Math.max(a, Math.max(b,c));
+        int y = a+b+c-x-z;
+        
+        if(x+y<=z) {
+            return x+y;
         }
-        return score;
+        
+        // x  y  z 
+        // 5  7  10
+        // remove z first, and try to make x left == y left
+        return z+(x+y-z)/2;           
     }
 }
