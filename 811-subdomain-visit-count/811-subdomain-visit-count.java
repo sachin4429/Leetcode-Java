@@ -11,10 +11,10 @@ class Solution {
                 counts.put(cur, counts.getOrDefault(cur, 0) + count);
             }
         }
-
-        List<String> ans = new ArrayList();
-        for (String dom: counts.keySet())
-            ans.add("" + counts.get(dom) + " " + dom);
-        return ans;
+        
+        List<String> res = new ArrayList<String>();
+        counts.forEach((k,v) -> res.add(v+" "+k));
+            return res;
+           
     }
 }
