@@ -1,28 +1,32 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        List<Integer> ds = new ArrayList<Integer>();
-        boolean check[] = new boolean[nums.length];
-        recursivefun(nums, ans, ds, check);
+        recursivefun(0, nums, ans);
         return ans;
     }
-    public void recursivefun(int[] nums, List<List<Integer>> ans, List<Integer> ds, boolean check[])
+    public void recursivefun(int index, int[] nums, List<List<Integer>> ans)
     {
-        if(ds.size() == nums.length)
+        if(index == nums.length)
         {
-            ans.add( new ArrayList<>(ds)); 
+            List<Integer> ds = new ArrayList<>();
+            for(int i = 0; i<nums.length; i++)
+            {
+                ds.add(nums[i]);
+            }
+            ans.add(new ArrayList<>(ds)); 
             return;
         }
-        for(int i = 0; i<nums.length; i++)
+        for(int i = index; i<nums.length; i++)
         {
-            if(check[i] == false)
-            {
-                check[i] = true;
-                ds.add(nums[i]);
-                recursivefun(nums, ans, ds, check);
-                check[i] = false;
-                ds.remove(ds.size()-1);
-            }
+            swap(i, index, nums);
+            recursivefun(index+1, nums, ans);
+            swap(i, index, nums);
         }
+    }
+    public void swap(int i, int j, int[] nums)
+    {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }
