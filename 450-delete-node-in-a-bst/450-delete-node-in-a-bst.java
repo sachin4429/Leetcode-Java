@@ -8,6 +8,38 @@
  * }
  */
 class Solution {
+    public void deleteleft(TreeNode pre, TreeNode root)
+    {
+        if(root.left == null && root.right == null)
+                    pre.left = null;
+                else if(root.left == null)
+                    pre.left = root.right;
+                else if(root.right == null)
+                    pre.left = root.left;
+                else
+                {
+                    pre.left = root.right;
+                    while(pre.left != null)
+                        pre = pre.left;
+                    pre.left = root.left;
+                }
+    }
+    public void deleteright(TreeNode pre, TreeNode root)
+    {
+        if(root.left == null && root.right == null)
+                    pre.right = null;
+                else if(root.left == null)
+                    pre.right = root.right;
+                else if(root.right == null)
+                    pre.right = root.left;
+                else
+                {
+                    pre.right = root.left;
+                    while(pre.right != null)
+                        pre = pre.right;
+                    pre.right = root.right;
+                }
+    }
     public TreeNode deleteNode(TreeNode root, int val) {
         TreeNode pre = null, cpy = root;
         while(root!=null && root.val != val)
@@ -26,19 +58,7 @@ class Solution {
                 pseudopre.val = Integer.MAX_VALUE;
                 pseudopre.left = root;
                 pre = pseudopre;
-                if(root.left == null && root.right == null)
-                    pre.left = null;
-                else if(root.left == null)
-                    pre.left = root.right;
-                else if(root.right == null)
-                    pre.left = root.left;
-                else
-                {
-                    pre.left = root.right;
-                    while(pre.left != null)
-                        pre = pre.left;
-                    pre.left = root.left;
-                }
+                deleteleft(pre, root);
                 return pseudopre.left;
                 
             }
@@ -46,35 +66,11 @@ class Solution {
             
             if(root.val<pre.val) // left
             {
-                if(root.left == null && root.right == null)
-                    pre.left = null;
-                else if(root.left == null)
-                    pre.left = root.right;
-                else if(root.right == null)
-                    pre.left = root.left;
-                else
-                {
-                    pre.left = root.right;
-                    while(pre.left != null)
-                        pre = pre.left;
-                    pre.left = root.left;
-                }
+                deleteleft(pre, root);
             }
             else
             {
-                if(root.left == null && root.right == null)
-                    pre.right = null;
-                else if(root.left == null)
-                    pre.right = root.right;
-                else if(root.right == null)
-                    pre.right = root.left;
-                else
-                {
-                    pre.right = root.left;
-                    while(pre.right != null)
-                        pre = pre.right;
-                    pre.right = root.right;
-                }
+                deleteright(pre,root);
             }
                 
         }
