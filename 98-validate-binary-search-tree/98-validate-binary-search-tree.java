@@ -14,24 +14,14 @@
  * }
  */
 class Solution {
-    boolean res = true;
-    Integer prev = null;
-    public void traversal(TreeNode root)
+    public boolean isValidBST(TreeNode root) {
+        return test(root, Long.MAX_VALUE, Long.MIN_VALUE);
+    }
+    public boolean test(TreeNode root, long max, long min)
     {
         if(root == null)
-            return;
-        traversal(root.left);
-        if(prev != null && root.val <= prev)
-        {
-            res = false;
-            return;
-        }
-        prev = root.val;
-        traversal(root.right);
-    }
-    public boolean isValidBST(TreeNode root) 
-    {
-        traversal(root);
-        return res;
+            return true;
+        if (root.val >= max|| root.val <= min) return false;
+        return test(root.left, root.val, min) && test(root.right, max, root.val);
     }
 }
