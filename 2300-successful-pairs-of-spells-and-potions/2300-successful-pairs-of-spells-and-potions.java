@@ -7,12 +7,12 @@ class Solution {
         int ind = 0;
         for(int i : spells)
         {
-            int lo = 0, hi = m;
-            while(lo<hi)
+            int lo = 0, hi = m-1;
+            while(lo<=hi)
             {
                 int mid = lo + (hi-lo)/2;
                 if((long)i*potions[mid] >= success)
-                    hi = mid;
+                    hi = mid-1;
                 else
                     lo = mid +1;
             }
