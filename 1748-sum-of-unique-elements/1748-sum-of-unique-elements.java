@@ -7,10 +7,9 @@ class Solution {
             map.put(i, map.getOrDefault(i,0)+1);
         }
         Integer one  = 1;
-        for(int i = 0; i<nums.length; i++)
-        {
-            if(map.get(nums[i]) == 1){
-                sum+=nums[i];
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(entry.getValue() == 1){
+                sum += entry.getKey();
             }
         }
         return sum;
