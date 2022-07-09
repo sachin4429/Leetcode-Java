@@ -1,33 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) {
+        if(head == null || head.next == null)
             return head;
-        }
-
-        ListNode slow = head, fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            slow = slow.next;
+        var slow = head;
+        var fast = head;
+        while(fast.next != null && fast.next.next!=null)
+        {
             fast = fast.next.next;
+            slow = slow.next;
         }
-        ListNode head2 = slow.next;
+        var head2 = slow.next;
         slow.next = null;
-        return merge(sortList(head),sortList(head2));
+        return merge(sortList(head), sortList(head2));
     }
-    public ListNode merge(ListNode head1, ListNode head2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;
-        while (temp1 != null && temp2 != null) {
-            if (temp1.val <= temp2.val) {
-                temp.next = temp1;
-                temp1 = temp1.next;
-            }
-            else {
-                temp.next = temp2;
-                temp2 = temp2.next;
-            }
-            temp = temp.next;
+    public ListNode merge(ListNode h1, ListNode h2)
+    {
+        if(h1 == null)
+            return h2;
+        if(h2 == null)
+            return h1;
+        if(h1.val < h2.val)
+        {
+            h1.next = merge(h1.next,h2);
+            return h1;
         }
-        temp.next = temp1 == null ? temp2 : temp1;
-        return dummyHead.next;
+        else
+        {
+            h2.next = merge(h2.next, h1);
+            return h2;
+        }
     }
 }
