@@ -11,7 +11,7 @@ class Solution {
         {
             int mid = lo + (hi-lo)/2;
              
-            if(isSufficient(weights,n,mid,days))
+            if(isvalid(weights,n,mid,days))
             {
                 res = mid;
                 hi = mid-1;
@@ -19,7 +19,7 @@ class Solution {
             else
                 lo = mid+1;
         }
-        return res;
+        return lo;
     }
     public boolean isSufficient(int[] w, int n, int max, int d){
         int count = 1;
@@ -37,9 +37,9 @@ class Solution {
     }
     public boolean isvalid(int[] weights, int n, int mx, int k)
     {
-        int day = 0;
-        int cap = 0;
-        for(int i = 0; i<n; i++)
+        int day = 1;
+        int cap = weights[0];
+        for(int i = 1; i<n; i++)
         {
             cap += weights[i];
             if(cap > mx)
@@ -47,7 +47,7 @@ class Solution {
                 day++;
                 cap = weights[i];
             }
-            if(cap > k)
+            if(day > k)
                 return false;
         }
         return true;
