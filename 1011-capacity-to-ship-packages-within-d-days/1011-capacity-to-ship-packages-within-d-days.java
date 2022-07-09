@@ -19,22 +19,9 @@ class Solution {
             else
                 lo = mid+1;
         }
-        return lo;
+        return res;
     }
-    public boolean isSufficient(int[] w, int n, int max, int d){
-        int count = 1;
-        int l = w[0];
-        for(int i = 1; i < n; i++){
-            l+=w[i];
-            if(l>max){
-                count++;
-                l = w[i];
-                
-            }
-        }
-        if(count>d) return false;
-        return true;
-    }
+    
     public boolean isvalid(int[] weights, int n, int mx, int k)
     {
         int day = 1;
