@@ -6,10 +6,10 @@ class Solution {
         int result = duration;
         for(int i = 1; i<timeSeries.length; i++)
         {
-            if(timeSeries[i-1]+duration<=timeSeries[i])
-                result += duration;
-            else
+            if(timeSeries[i-1]+duration>timeSeries[i])
                 result += timeSeries[i]-timeSeries[i-1];
+            else
+                result += duration;
         }
         return result;
     }
