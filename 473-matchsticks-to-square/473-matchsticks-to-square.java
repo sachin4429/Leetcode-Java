@@ -7,7 +7,7 @@ class Solution {
             total += i;
         }
         
-        if (total % 4 != 0) return false;
+        if (total % 4 != 0 || matchsticks.length<4) return false;
         Arrays.sort(matchsticks); 
         return match(matchsticks, matchsticks.length - 1, 0, 0, 0, 0, total / 4);
     }
