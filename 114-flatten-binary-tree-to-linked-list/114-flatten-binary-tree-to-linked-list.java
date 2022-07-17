@@ -14,15 +14,22 @@
  * }
  */
 class Solution {
-    TreeNode prev = null;
-    public void flatten(TreeNode node) {
-        if(node == null)
+    public void flatten(TreeNode root) {
+        if(root == null)
             return;
-        flatten(node.right);
-        flatten(node.left);
+        if(root.left != null)
+            flatten(root.left);
+        if(root.right != null)
+            flatten(root.right);
+
+        var rh = root.right;
+        root.right = root.left;
+        root.left = null;
         
-        node.right = prev;
-        node.left = null;
-        prev = node;
+        var temp = root;
+        while(temp.right!=null)
+            temp = temp.right;
+        temp.right = rh;
+        
     }
 }
