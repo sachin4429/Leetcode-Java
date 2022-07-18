@@ -1,51 +1,36 @@
 class Solution {
-    public String reorganizeString(String s) {
-        class Pair{
-            int fre;
-            char ch;
-            Pair(int fre, char ch)
-            {
-                this.fre = fre;
-                this.ch = ch;
+    public String reorganizeString(String S) {
+        int[] hash = new int[26];
+        for (int i = 0; i < S.length(); i++) {
+            hash[S.charAt(i) - 'a']++;
+        } 
+        int max = 0, letter = 0;
+        for (int i = 0; i < hash.length; i++) {
+            if (hash[i] > max) {
+                max = hash[i];
+                letter = i;
             }
         }
-        HashMap<Character, Integer> map = new HashMap<>();
-        for(char ch : s.toCharArray())
-        {
-            map.put(ch, map.getOrDefault(ch,0)+1);
+        if (max > (S.length() + 1) / 2) {
+            return ""; 
         }
-        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x,y)->y.fre-x.fre);
-        map.forEach((k,v) -> pq.add(new Pair(v,k)));
-        String ans = "";
-        while(pq.size()>1)
-        {
-            Pair one = pq.poll();
-            Pair two = pq.poll();
-            if(one.fre>=1)
-            {
-                ans += one.ch;
-                one.fre -= 1;
+        char[] res = new char[S.length()];
+        int idx = 0;
+        while (hash[letter] > 0) {
+            res[idx] = (char) (letter + 'a');
+            idx += 2;
+            hash[letter]--;
+        }
+        for (int i = 0; i < hash.length; i++) {
+            while (hash[i] > 0) {
+                if (idx >= res.length) {
+                    idx = 1;
+                }
+                res[idx] = (char) (i + 'a');
+                idx += 2;
+                hash[i]--;
             }
-            if(two.fre>=1)
-            {
-                ans+=two.ch;
-                two.fre-=1;
-            }
-            if(one.fre>0)
-                pq.add(one);
-            if(two.fre>0)
-                pq.add(two);
-    
         }
-        if(pq.isEmpty())
-            return ans;
-        if(pq.peek().fre>=1)
-        {
-            ans+=pq.peek().ch;
-        }
-        if(s.length() == ans.length())
-            return ans;
-        else
-            return "";
+        return String.valueOf(res);
     }
 }
