@@ -4,7 +4,7 @@ class Solution {
             return true;
         long temp = 2;
         boolean flag  = true;
-        while(temp <= 2147483647)
+        while(temp <= n)
         {
             if(temp == n)
                 return true;
