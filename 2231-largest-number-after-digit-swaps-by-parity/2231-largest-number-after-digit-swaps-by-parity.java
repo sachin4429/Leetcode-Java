@@ -1,38 +1,27 @@
 class Solution {
     public int largestInteger(int num) {
-        int n = num;
-        ArrayList<Integer> arr = new ArrayList<>();
-        PriorityQueue<Integer> even = new PriorityQueue<>();
-        PriorityQueue<Integer> odd = new PriorityQueue<>();
-        while(n>0)
+        if(num<10)
+            return num;
+        String s = Integer.toString(num);
+        PriorityQueue<Integer> even = new PriorityQueue<>((a,b) -> b-a);
+        PriorityQueue<Integer> odd = new PriorityQueue<>((a,b) -> b-a);
+        for(char ch : s.toCharArray())
         {
-            int remain = n%10;
-            arr.add(remain);
-            if(remain%2==0){
-                even.offer(remain);
-            }
-            else if(remain%2!=0){
-                odd.offer(remain);
-            }
-            n = (n-remain)/10;
-        }
-        for(int i=0; i<arr.size(); i++)
-        {
-            if(arr.get(i)%2==0)
-            {
-                arr.set(i,even.poll());
-            }
+            int i = ch-'0';
+            if(i%2 == 0)
+                even.add(i);
             else
-            {
-                arr.set(i,odd.poll());
-            }
+                odd.add(i);
         }
-        long temp=1, ans=0;
-        for(int i=0; i<arr.size(); i++)
+        StringBuilder sb = new StringBuilder();
+        for(char ch : s.toCharArray())
         {
-            ans+=temp*arr.get(i);
-            temp=temp*10;
+            int i = ch-'0';
+            if(i%2 == 0)
+                sb.append(Integer.toString(even.poll()));
+            else
+                sb.append(Integer.toString(odd.poll()));
         }
-        return (int)ans;
+        return Integer.parseInt(sb.toString());
     }
 }
