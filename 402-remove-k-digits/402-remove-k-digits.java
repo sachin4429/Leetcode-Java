@@ -10,7 +10,7 @@ class Solution {
                 k--;
                 sb.deleteCharAt(sb.length()-1);
             }
-            if(sb.length()!=0 || num.charAt(i) != '0')
+            if(!(sb.length()==0 && num.charAt(i) == '0'))
                 sb.append(num.charAt(i));
         }
         while(k>0 && sb.length() != 0)
